@@ -1,14 +1,6 @@
 import React from "react";
 
-function PizzaBlock({
-  title,
-  price,
-  imageUrl,
-  sizes,
-  types,
-  category,
-  rating,
-}) {
+function PizzaBlock({ name, price, imageUrl, sizes, types, category, rating }) {
   // const [pizzaSize, setPizzaSize] = React.useState();
 
   const [activeType, setActiveType] = React.useState(0);
@@ -19,7 +11,7 @@ function PizzaBlock({
   return (
     <div className="pizza-block">
       <img className="pizza-block__image" src={imageUrl} alt="Pizza" />
-      <h4 className="pizza-block__title">{title}</h4>
+      <h4 className="pizza-block__title">{name}</h4>
       <div className="pizza-block__selector">
         <ul>
           {types.map((type, index) => (
