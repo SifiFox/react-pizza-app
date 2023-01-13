@@ -1,0 +1,28 @@
+.root {
+  display: inline-flex;
+  gap: 10px;
+  justify-content: center;
+}
+.root li {
+  cursor: pointer;
+  background-color: rgb(244, 148, 21);
+  border-radius: 50%;
+  display: flex;
+}
+.root li a {
+  padding: 10px;
+  text-align: center;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+}
+.root li:hover {
+  background-color: rgb(243, 104, 5);
+}
+.root :global .selected a {
+  background-color: rgb(243, 73, 5);
+  border-radius: 50%;
+}/*# sourceMappingURL=Pagination.module.css.map */

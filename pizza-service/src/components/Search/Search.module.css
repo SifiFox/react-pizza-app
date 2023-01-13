@@ -1,0 +1,41 @@
+.root {
+  position: relative;
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 8px 20px;
+  padding-left: 50px;
+  padding-right: 14px;
+  width: 340px;
+  border-radius: 15px;
+  outline: none;
+  font-size: 16px;
+}
+.input:focus {
+  border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.3;
+  position: absolute;
+  top: 7px;
+  left: 15px;
+}
+
+.clearIcon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 15px;
+  z-index: 10;
+}
+.clearIcon:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}/*# sourceMappingURL=Search.module.css.map */
