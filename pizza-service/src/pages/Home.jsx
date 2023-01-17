@@ -6,7 +6,11 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../scss/components/Pagination";
 
-const Home = ({ searchValue }) => {
+import { SearchContext } from "../App";
+
+const Home = () => {
+  const { searchValue } = React.useContext(SearchContext);
+
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(1);
   const [categoryId, setCategoryId] = React.useState(0);
@@ -23,7 +27,7 @@ const Home = ({ searchValue }) => {
     // )
     .map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />);
 
-  const skeletonItems = [...new Array(6)].map((_, index) => (
+  const skeletonItems = [...new Array(4)].map((_, index) => (
     <Skeleton key={index} />
   ));
 
