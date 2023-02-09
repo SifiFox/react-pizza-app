@@ -4,7 +4,7 @@ import { setSort } from "../redux/slices/filterSlice";
 
 import { useSelector, useDispatch } from "react-redux";
 
-const sortTypes = [
+export const sortTypes = [
   { name: `популярности🠕`, sortProperty: "rating" },
   { name: "популярности↓", sortProperty: "-rating" },
   { name: "цене🠕", sortProperty: "price" },
@@ -16,17 +16,29 @@ const sortTypes = [
 function Sort() {
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
-
   const [open, setOpen] = React.useState(false);
+
+  const sortRef = React.useRef();
 
   const onClickListItem = (obj) => {
     dispatch(setSort(obj));
-
     setOpen(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (!e.composedPath().includes(sortRef.current)) {
+        setOpen(false);
+      }
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => document.body.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
