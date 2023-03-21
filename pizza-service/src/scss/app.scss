@@ -23,7 +23,15 @@ body {
 
 .content {
   padding: 40px 0;
-
+  &__error-info {
+    padding: 3rem 0rem;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    gap: 1rem;
+    justify-content: center;
+    flex-direction: column;
+  }
   &__title {
     margin: 35px 0;
   }
