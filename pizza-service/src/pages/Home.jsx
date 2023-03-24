@@ -1,30 +1,29 @@
 import React from "react";
 
-import axios from "axios";
 import qs from "qs";
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Categories from "../components/Categories";
 import Sort, { sortTypes } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
-import Pagination from "../scss/components/Pagination";
-
-import { SearchContext } from "../App";
+import Pagination from "../components/Pagination";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
+  selectFilter,
   setCategoryId,
   setCurrentPage,
   setFilters,
 } from "../redux/slices/filterSlice";
-import { fetchPizzas } from "../redux/slices/pizzaSlice";
+import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
 
 const Home = () => {
-  const { categoryId, sort, currentPage } = useSelector(
-    (state) => state.filter
-  );
+  const { categoryId, sort, currentPage, searchValue } =
+    useSelector(selectFilter);
+  const { items, status } = useSelector(selectPizzaData);
+
   const sortType = sort.sortProperty;
 
   const navigate = useNavigate();
@@ -36,10 +35,6 @@ const Home = () => {
   const onClickCategory = (id) => {
     dispatch(setCategoryId(id));
   };
-
-  const { searchValue } = React.useContext(SearchContext);
-
-  const { items, status } = useSelector((state) => state.pizza);
 
   React.useEffect(() => {
     if (isMounted.current) {
@@ -76,7 +71,9 @@ const Home = () => {
   };
 
   const pizzaItems = items.map((pizza) => (
-    <PizzaBlock key={pizza.id} {...pizza} />
+    <Link key={pizza.id} to={`/pizza/${pizza.id}`}>
+      <PizzaBlock {...pizza} />
+    </Link>
   ));
 
   const skeletonItems = [...new Array(4)].map((_, index) => (
@@ -99,10 +96,6 @@ const Home = () => {
     if (!isSearch.current) {
       getPizzas();
     }
-    // getPizzas();
-    // if (isSearch) {
-    //   getPizzas();
-    // }
 
     isSearch.current = false;
   }, [categoryId, sortType, searchValue, currentPage]);
