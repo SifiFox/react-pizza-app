@@ -4,7 +4,7 @@ import ReactPaginate from "react-paginate";
 
 type PaginationProps = {
   currentPage: number;
-  onChangePage: any;
+  onChangePage: (page: number) => void;
 };
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -21,7 +21,6 @@ const Pagination: React.FC<PaginationProps> = ({
       forcePage={currentPage - 1}
       onPageChange={(e) => onChangePage(e.selected + 1)}
       pageRangeDisplayed={2}
-      // renderOnZeroPageCount={null}
     />
   );
 };
